@@ -20,4 +20,8 @@ export class TodoApp {
         const index = this.projects.findIndex((project) => project.name === projectName);
         this.currentProject = this.projects[index];
     }
+
+    addTodo(todo) {
+        this.currentProject.addTodo(todo);
+    }
 }

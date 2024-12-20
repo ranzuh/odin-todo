@@ -3,6 +3,15 @@ import { Todo } from "./todo";
 import { Project } from "./project";
 import { TodoApp } from "./todoapp";
 
+const myTodos = [
+    "Adding new projects",
+    "Editing and removing existing projects",
+    "Editing and removing existing todos",
+    "Add due dates",
+    "Add priority to tasks",
+    "Add persistence using the Web Storage API",
+];
+
 const UIController = (function (){
     const todoContainer = document.getElementById("todo-container");
     const titleElement = document.getElementById("current-project-title");
@@ -10,17 +19,17 @@ const UIController = (function (){
     const taskModal = document.getElementById("dialog");
 
     const app = new TodoApp();
+
+    // Add my todo list
+    myTodos.forEach(title => {
+        app.addTodo(new Todo(title, "", "", "", false));
+    });
+    
+    // Add example project and example todo
     let exampleProject = new Project("Example Project");
     app.addProject(exampleProject);
-
     let exampleTodo = new Todo("Clean kitchen", "Clean the kitchen", "Today", "High", false);
     exampleProject.addTodo(exampleTodo);
-
-    exampleTodo = new Todo("This is a title", "", "", "", false);
-
-    app.currentProject.addTodo(exampleTodo);
-
-    console.log("Here again...");
 
     document.getElementById("new-task-btn").addEventListener("click", () => {
         taskModal.showModal();
@@ -30,8 +39,9 @@ const UIController = (function (){
         taskModal.close();
     });
 
-    document.getElementById("modal-add").addEventListener("click", () => {
-        taskModal.close()
+    document.getElementById("modal-add").addEventListener("click", (event) => {
+        event.preventDefault();
+        taskModal.close();
 
         const inputTask = document.getElementById("task-input");
         const newTodo = new Todo(inputTask.value, "", "", "", false);
