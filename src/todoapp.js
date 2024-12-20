@@ -1,9 +1,8 @@
 import { Project } from "./project";
 
 export class TodoApp {
-    projects = [];
-
     constructor() {
+        this.projects = [];
         this.defaultProject = new Project("Default Project");
         this.addProject(this.defaultProject);
     }

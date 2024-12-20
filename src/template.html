@@ -11,13 +11,15 @@
             <h1>TodoApp</h1>
             <h2>Projects</h2>
             <button class="btn">New Project</button>
-            <ul>
-                <li><div class="project-item"><a href="">Default</a><button>Edit</button></div></li>
-                <li><div class="project-item"><a href="">Work</a><button>Edit</button></div></li>
-            </ul>
+            <div id="project-list">
+                <ul>
+                    <li><div class="project-item"><a href="">Default</a><button>Edit</button></div></li>
+                    <li><div class="project-item"><a href="">Work</a><button>Edit</button></div></li>
+                </ul>
+            </div>
         </div>
         <div id="content">
-            <h1>Default</h1>
+            <h1 id="current-project-title">Default</h1>
             <hr>
             <button class="btn">New Task</button>
             <div id="todo-container">

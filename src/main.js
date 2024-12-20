@@ -3,21 +3,46 @@ import { Todo } from "./todo";
 import { Project } from "./project";
 import { TodoApp } from "./todoapp";
 
+const UIController = (function (){
+    const todoContainer = document.getElementById("todo-container");
+    const titleElement = document.getElementById("current-project-title");
+    const projectList = document.getElementById("project-list");
 
-let exampleTodo = new Todo("Clean kitchen", "Clean the kitchen", "Today", "High", false);
+    const app = new TodoApp();
+    let exampleProject = new Project("Example Project");
+    app.addProject(exampleProject);
 
-let exampleProject = new Project("Example Project");
+    let exampleTodo = new Todo("Clean kitchen", "Clean the kitchen", "Today", "High", false);
+    exampleProject.addTodo(exampleTodo);
 
-exampleProject.addTodo(exampleTodo);
+    function update() {
+        titleElement.textContent = app.defaultProject.name;
 
-//console.log(exampleProject.todos);
+        renderProjectList()
+    }
 
-//exampleProject.removeTodo("Clean kitchen");
+    function renderProjectList() {
+        projectList.innerHTML = "";
 
-//console.log(exampleProject.todos);
+        const ul = projectList.appendChild(document.createElement("ul"));
 
-const app = new TodoApp();
+        app.projects.forEach(project => {
+            const li = document.createElement("li");
+            const div = document.createElement("div");
+            div.classList.add("project-item");
+            const a = document.createElement("a");
+            a.textContent = project.name;
+            const button = document.createElement("button");
+            button.textContent = "Edit";
 
-app.addProject(exampleProject);
+            div.appendChild(a);
+            div.appendChild(button);
+            li.appendChild(div);
 
-console.log(app.projects)
+            ul.appendChild(li);
+        });
+    }
+
+    update();
+
+})();
