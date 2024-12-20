@@ -15,10 +15,18 @@ const UIController = (function (){
     let exampleTodo = new Todo("Clean kitchen", "Clean the kitchen", "Today", "High", false);
     exampleProject.addTodo(exampleTodo);
 
+    exampleTodo = new Todo("This is a title", "", "", "", false);
+
+    app.currentProject.addTodo(exampleTodo);
+
+    console.log("Here again...");
+
+
+
     function update() {
         titleElement.textContent = app.currentProject.name;
-
         renderProjectList()
+        renderTodoList()
     }
 
     function renderProjectList() {
@@ -41,6 +49,10 @@ const UIController = (function (){
             const button = document.createElement("button");
             button.textContent = "Edit";
 
+            if (project === app.currentProject) {
+                label.style.textDecoration = "underline";
+            }
+
             label.addEventListener("click", handleProjectClick);
 
             div.appendChild(label);
@@ -49,6 +61,26 @@ const UIController = (function (){
 
             ul.appendChild(li);
         });
+    }
+
+    function renderTodoList() {
+        todoContainer.innerHTML = "";
+
+        app.currentProject.todos.forEach(todo => {
+            const div = document.createElement("div");
+            div.classList.add("todo-item");
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            const p = document.createElement("p");
+            p.textContent = todo.title;
+
+            div.appendChild(input);
+            div.appendChild(p);
+
+            todoContainer.appendChild(div);
+        });
+        
+
     }
 
     update();
