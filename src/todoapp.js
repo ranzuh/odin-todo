@@ -3,8 +3,8 @@ import { Project } from "./project";
 export class TodoApp {
     constructor() {
         this.projects = [];
-        this.defaultProject = new Project("Default Project");
-        this.addProject(this.defaultProject);
+        this.currentProject = new Project("Default Project");
+        this.addProject(this.currentProject);
     }
 
     addProject(project) {
@@ -16,7 +16,8 @@ export class TodoApp {
         this.projects.splice(indexToRemove, 1);
     }
 
-    setDefaultProject(project) {
-        this.defaultProject = project;
+    setCurrentProject(projectName) {
+        const index = this.projects.findIndex((project) => project.name === projectName);
+        this.currentProject = this.projects[index];
     }
 }

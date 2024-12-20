@@ -75,3 +75,8 @@ ul {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+label:hover {
+    cursor: pointer;
+    background-color: #52ceff;
+}

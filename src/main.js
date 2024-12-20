@@ -16,7 +16,7 @@ const UIController = (function (){
     exampleProject.addTodo(exampleTodo);
 
     function update() {
-        titleElement.textContent = app.defaultProject.name;
+        titleElement.textContent = app.currentProject.name;
 
         renderProjectList()
     }
@@ -26,16 +26,24 @@ const UIController = (function (){
 
         const ul = projectList.appendChild(document.createElement("ul"));
 
+        function handleProjectClick(event) {
+            const clickedProjectName = event.target.textContent;
+            app.setCurrentProject(clickedProjectName);
+            update();
+        }
+
         app.projects.forEach(project => {
             const li = document.createElement("li");
             const div = document.createElement("div");
             div.classList.add("project-item");
-            const a = document.createElement("a");
-            a.textContent = project.name;
+            const label = document.createElement("label");
+            label.textContent = project.name;
             const button = document.createElement("button");
             button.textContent = "Edit";
 
-            div.appendChild(a);
+            label.addEventListener("click", handleProjectClick);
+
+            div.appendChild(label);
             div.appendChild(button);
             li.appendChild(div);
 
