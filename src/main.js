@@ -7,6 +7,7 @@ const UIController = (function (){
     const todoContainer = document.getElementById("todo-container");
     const titleElement = document.getElementById("current-project-title");
     const projectList = document.getElementById("project-list");
+    const taskModal = document.getElementById("dialog");
 
     const app = new TodoApp();
     let exampleProject = new Project("Example Project");
@@ -20,6 +21,25 @@ const UIController = (function (){
     app.currentProject.addTodo(exampleTodo);
 
     console.log("Here again...");
+
+    document.getElementById("new-task-btn").addEventListener("click", () => {
+        taskModal.showModal();
+    });
+
+    document.getElementById("modal-cancel").addEventListener("click", () => {
+        taskModal.close();
+    });
+
+    document.getElementById("modal-add").addEventListener("click", () => {
+        taskModal.close()
+
+        const inputTask = document.getElementById("task-input");
+        const newTodo = new Todo(inputTask.value, "", "", "", false);
+        app.currentProject.addTodo(newTodo);
+        inputTask.value = "";
+
+        update();
+    });
 
 
 

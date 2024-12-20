@@ -21,11 +21,17 @@
         <div id="content">
             <h1 id="current-project-title">Default</h1>
             <hr>
-            <button class="btn">New Task</button>
+            <button id="new-task-btn" class="btn">New Task</button>
             <div id="todo-container">
-                
+
             </div>
         </div>
+        <dialog id="dialog">
+            <h2>Add Task</h2>
+            <input type="text" name="task" id="task-input" placeholder="Write task here">
+            <button id="modal-add">Add</button>
+            <button id="modal-cancel">Cancel</button>
+        </dialog>
     </div>
 </body>
 </html>
