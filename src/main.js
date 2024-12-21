@@ -1,10 +1,10 @@
 import "./styles.css"
-import { Todo } from "./todo";
-import { Project } from "./project";
-import { TodoApp } from "./todoapp";
+import { Todo } from "./todoapp/todo";
+import { Project } from "./todoapp/project";
+import { TodoApp } from "./todoapp/todoapp";
 import { SetupAddModal } from "./modal";
-import { createProjectElement } from "./projectview";
-import { createTodoElement } from "./todoview";
+import { createProjectElement } from "./view/projectview";
+import { createTodoElement } from "./view/todoview";
 
 const myTodos = [
     "Editing and removing existing projects",
