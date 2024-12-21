@@ -2,6 +2,7 @@ import "./styles.css"
 import { Todo } from "./todo";
 import { Project } from "./project";
 import { TodoApp } from "./todoapp";
+import { SetupAddModal } from "./modal";
 
 const myTodos = [
     "Adding new projects",
@@ -13,10 +14,12 @@ const myTodos = [
 ];
 
 const UIController = (function (){
+    // get elements
     const todoContainer = document.getElementById("todo-container");
     const titleElement = document.getElementById("current-project-title");
     const projectList = document.getElementById("project-list");
-    const taskModal = document.getElementById("dialog");
+    const taskModal = document.getElementById("add-task-dialog");
+    const projectModal = document.getElementById("add-project-dialog");
 
     const app = new TodoApp();
 
@@ -31,29 +34,26 @@ const UIController = (function (){
     let exampleTodo = new Todo("Clean kitchen", "Clean the kitchen", "Today", "High", false);
     exampleProject.addTodo(exampleTodo);
 
-    document.getElementById("new-task-btn").addEventListener("click", () => {
-        taskModal.showModal();
-    });
-
-    document.getElementById("modal-cancel").addEventListener("click", () => {
-        taskModal.close();
-    });
-
-    document.getElementById("modal-add").addEventListener("click", (event) => {
-        event.preventDefault();
-        taskModal.close();
-
+    // setup task and project add modals
+    SetupAddModal("add-task-dialog", "new-task-btn", "modal-task-cancel", "modal-task-add", (event) => {
         const inputTask = document.getElementById("task-input");
         const newTodo = new Todo(inputTask.value, "", "", "", false);
         app.currentProject.addTodo(newTodo);
         inputTask.value = "";
+        render();
+    })
 
-        update();
-    });
+    SetupAddModal("add-project-dialog", "new-project-btn", "modal-project-cancel", "modal-project-add", (event) => {
+        const inputProject = document.getElementById("project-input");
+        const newProject = new Project(inputProject.value);
+        app.addProject(newProject); 
+        inputProject.value = "";
+        render();
+    })
 
+    
 
-
-    function update() {
+    function render() {
         titleElement.textContent = app.currentProject.name;
         renderProjectList()
         renderTodoList()
@@ -67,7 +67,7 @@ const UIController = (function (){
         function handleProjectClick(event) {
             const clickedProjectName = event.target.textContent;
             app.setCurrentProject(clickedProjectName);
-            update();
+            render();
         }
 
         app.projects.forEach(project => {
@@ -113,6 +113,7 @@ const UIController = (function (){
 
     }
 
-    update();
+    // initial update
+    render();
 
 })();

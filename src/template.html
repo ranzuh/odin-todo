@@ -10,7 +10,7 @@
         <div id="sidebar">
             <h1>TodoApp</h1>
             <h2>Projects</h2>
-            <button class="btn">New Project</button>
+            <button id="new-project-btn" class="btn">New Project</button>
             <div id="project-list">
                 <ul>
                     <li><div class="project-item"><a href="">Default</a><button>Edit</button></div></li>
@@ -26,12 +26,20 @@
 
             </div>
         </div>
-        <dialog id="dialog">
+        <dialog id="add-task-dialog">
             <h2>Add Task</h2>
             <form>
                 <input type="text" name="task" id="task-input" placeholder="Write task here">
-                <button id="modal-add">Add</button>
-                <button type="button" id="modal-cancel">Cancel</button>
+                <button id="modal-task-add">Add</button>
+                <button type="button" id="modal-task-cancel">Cancel</button>
+            </form>
+        </dialog>
+        <dialog id="add-project-dialog">
+            <h2>Add project</h2>
+            <form>
+                <input type="text" name="project" id="project-input" placeholder="Write project's name here">
+                <button id="modal-project-add">Add</button>
+                <button type="button" id="modal-project-cancel">Cancel</button>
             </form>
         </dialog>
     </div>
