@@ -3,6 +3,7 @@ import { Todo } from "./todo";
 import { Project } from "./project";
 import { TodoApp } from "./todoapp";
 import { SetupAddModal } from "./modal";
+import { createProjectElement } from "./projectview";
 
 const myTodos = [
     "Adding new projects",
@@ -71,25 +72,10 @@ const UIController = (function (){
         }
 
         app.projects.forEach(project => {
-            const li = document.createElement("li");
-            const div = document.createElement("div");
-            div.classList.add("project-item");
-            const label = document.createElement("label");
-            label.textContent = project.name;
-            const button = document.createElement("button");
-            button.textContent = "Edit";
+            const isCurrentProject = project === app.currentProject;
+            const projectElement = createProjectElement(project.name, isCurrentProject, handleProjectClick);
 
-            if (project === app.currentProject) {
-                label.style.textDecoration = "underline";
-            }
-
-            label.addEventListener("click", handleProjectClick);
-
-            div.appendChild(label);
-            div.appendChild(button);
-            li.appendChild(div);
-
-            ul.appendChild(li);
+            ul.appendChild(projectElement);
         });
     }
 
