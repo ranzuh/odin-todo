@@ -4,6 +4,7 @@ import { Project } from "./project";
 import { TodoApp } from "./todoapp";
 import { SetupAddModal } from "./modal";
 import { createProjectElement } from "./projectview";
+import { createTodoElement } from "./todoview";
 
 const myTodos = [
     "Adding new projects",
@@ -52,8 +53,6 @@ const UIController = (function (){
         render();
     })
 
-    
-
     function render() {
         titleElement.textContent = app.currentProject.name;
         renderProjectList()
@@ -83,20 +82,9 @@ const UIController = (function (){
         todoContainer.innerHTML = "";
 
         app.currentProject.todos.forEach(todo => {
-            const div = document.createElement("div");
-            div.classList.add("todo-item");
-            const input = document.createElement("input");
-            input.type = "checkbox";
-            const p = document.createElement("p");
-            p.textContent = todo.title;
-
-            div.appendChild(input);
-            div.appendChild(p);
-
-            todoContainer.appendChild(div);
+            const todoElement = createTodoElement(todo.title);
+            todoContainer.appendChild(todoElement);
         });
-        
-
     }
 
     // initial update
