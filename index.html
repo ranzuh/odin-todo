@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div id="main-container">
+        <div id="sidebar">
+            <h1>TodoApp</h1>
+            <h2>Projects</h2>
+            <button id="new-project-btn" class="btn">New Project</button>
+            <div id="project-list">
+                <ul>
+                    <li><div class="project-item"><a href="">Default</a><button>Edit</button></div></li>
+                    <li><div class="project-item"><a href="">Work</a><button>Edit</button></div></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <h1 id="current-project-title">Default</h1>
+            <hr>
+            <button id="new-task-btn" class="btn">New Task</button>
+            <div id="todo-container">
+
+            </div>
+        </div>
+        <dialog id="add-task-dialog">
+            <h2>Add Task</h2>
+            <form>
+                <input type="text" name="task" id="task-input" placeholder="Write task here">
+                <button id="modal-task-add">Add</button>
+                <button type="button" id="modal-task-cancel">Cancel</button>
+            </form>
+        </dialog>
+        <dialog id="add-project-dialog">
+            <h2>Add project</h2>
+            <form>
+                <input type="text" name="project" id="project-input" placeholder="Write project's name here">
+                <button id="modal-project-add">Add</button>
+                <button type="button" id="modal-project-cancel">Cancel</button>
+            </form>
+        </dialog>
+    </div>
+</body>
+</html>
