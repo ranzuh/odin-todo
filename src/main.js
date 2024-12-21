@@ -7,7 +7,6 @@ import { createProjectElement } from "./projectview";
 import { createTodoElement } from "./todoview";
 
 const myTodos = [
-    "Adding new projects",
     "Editing and removing existing projects",
     "Editing and removing existing todos",
     "Add due dates",
@@ -20,8 +19,6 @@ const UIController = (function (){
     const todoContainer = document.getElementById("todo-container");
     const titleElement = document.getElementById("current-project-title");
     const projectList = document.getElementById("project-list");
-    const taskModal = document.getElementById("add-task-dialog");
-    const projectModal = document.getElementById("add-project-dialog");
 
     const app = new TodoApp();
 
